@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
+import CharComponent from './CharComponent';
 import Validation from './ValidationComponent';
+import './Entrada.css'
 
 const Entrada = () => {
 
@@ -23,6 +25,9 @@ const Entrada = () => {
           <input type="text" style={estiloInput} onChange={refrescarCantidadCaracteres} />
           <p>El input tiene {caracteres.length} caracteres</p>
           <Validation texto={caracteres} />
+          <ul className="estiloLista">
+            {Array.from(caracteres).map(caracter => <CharComponent caracter={caracter} />)}
+          </ul>
         </div>
       );
 }
