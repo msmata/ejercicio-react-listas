@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import CharComponent from './CharComponent';
 import Validation from './ValidationComponent';
-import './Entrada.css'
 
 const Entrada = () => {
 
@@ -20,13 +19,20 @@ const Entrada = () => {
         setCaracteres(cadena);
     }
 
+    const eliminarCaracterDeCadena = (indice) => {
+        let arregloCadena = Array.from(caracteres);
+        arregloCadena.splice(indice, 1);
+        let cadena = arregloCadena.join('');
+        setCaracteres(cadena);
+    }
+
     return (
         <div style={estiloCentrado}>
-          <input type="text" style={estiloInput} onChange={refrescarCantidadCaracteres} />
+          <input type="text" style={estiloInput} onChange={refrescarCantidadCaracteres} value={caracteres} />
           <p>El input tiene {caracteres.length} caracteres</p>
           <Validation texto={caracteres} />
-          <ul className="estiloLista">
-            {Array.from(caracteres).map(caracter => <CharComponent caracter={caracter} />)}
+          <ul>
+            {Array.from(caracteres).map((caracter, _index) => <CharComponent caracter={caracter} click={() => eliminarCaracterDeCadena(_index)} />)}
           </ul>
         </div>
       );
