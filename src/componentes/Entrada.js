@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import Validation from './ValidationComponent';
 
 const Entrada = () => {
 
@@ -10,17 +11,18 @@ const Entrada = () => {
         textAlign: "center"
     };
 
-    const [cantidadCaracteres, setCantidadCaracteres] = useState(0);
+    const [caracteres, setCaracteres] = useState("");
 
     const refrescarCantidadCaracteres = (event) => {
         const cadena = event.target.value;
-        setCantidadCaracteres(cadena.length);
+        setCaracteres(cadena);
     }
 
     return (
         <div style={estiloCentrado}>
           <input type="text" style={estiloInput} onChange={refrescarCantidadCaracteres} />
-          <p>El input tiene {cantidadCaracteres} caracteres</p>
+          <p>El input tiene {caracteres.length} caracteres</p>
+          <Validation texto={caracteres} />
         </div>
       );
 }
